@@ -1,20 +1,11 @@
-#define BLYNK_TEMPLATE_ID "TMPL2p9wJ0rmO"
-#define BLYNK_TEMPLATE_NAME "LCD MKR 1010"
-#define BLYNK_AUTH_TOKEN "3io2qrjoiVVBVE4cF2IGg324jB1GPWPB"
-
+// Setup Blynk and WiFi in secrets.h
 // include the library code:
 #include <SPI.h>
 #include <WiFiNINA.h>
 #include <BlynkSimpleWiFiNINA.h>
 
-
-// Your WiFi credentials.
-// Set password to "" for open networks.
-char ssid[] = "Halo i bims der FritZ";
-char pass[] = "Keine#Hose!Wlan42";
-
-const int trigPin = 5;
-const int echoPin = 4;
+const int trigPin = 3;
+const int echoPin = 2;
 
 long duration;
 int distance;
@@ -42,10 +33,7 @@ void loop() {
   duration = pulseIn(echoPin, HIGH);
   // Calculating the distance
   distance = duration * 0.034 / 2;
-  // Prints the distance on the Serial Monitor
-  Serial.print("Distance: ");
-  Serial.println(distance);
+  // Prints the distance to Blynk
   Blynk.virtualWrite(V0, distance);
-  delayMicroseconds(5000);
-  
+  delayMicroseconds(5000);  
 }
